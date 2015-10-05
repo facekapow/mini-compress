@@ -6,10 +6,10 @@ module.exports = function(req, data, cb) {
   var encoding = req.headers['accept-encoding'];
   if (!encoding) encoding = '';
 
-  if (encoding.match(/\bdeflate\b/)) {
-    zlib.defalte(data, cb);
-  } else if (encoding.match(/\bgzip\b/)) {
+  if (encoding.match(/\bgzip\b/)) {
     zlib.gzip(data, cb);
+  } else if (encoding.match(/\bdeflate\b/)) {
+    zlib.deflate(data, cb);
   } else {
     cb(null, data);
   }
